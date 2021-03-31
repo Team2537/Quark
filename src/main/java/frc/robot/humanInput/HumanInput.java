@@ -12,11 +12,11 @@ public class HumanInput {
         xbox = new XboxController(0);
     }
 
-    public static double getLeftXBox() {
+    public double getLeftXBox() {
         return xbox.getY(Hand.kLeft);
     }
 
-    public static double getRightXBox() {
+    public double getRightXBox() {
         return xbox.getY(Hand.kRight);
     }
     

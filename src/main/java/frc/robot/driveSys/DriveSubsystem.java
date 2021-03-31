@@ -44,23 +44,23 @@ public class DriveSubsystem extends SubsystemBase {
         setRightTalons(speed);
     }
 
-    public static double getBackLeftEncoder() {
+    public double getBackLeftEncoder() {
         return backLeftTalon.getSelectedSensorPosition();
     }
 
-    public static double getFrontLeftEncoder() {
+    public double getFrontLeftEncoder() {
         return frontLeftTalon.getSelectedSensorPosition();
     }
 
-    public static double getBackRightEncoder() {
+    public double getBackRightEncoder() {
         return backRightTalon.getSelectedSensorPosition();
     }
 
-    public static double getFrontRightEncoder() {
+    public double getFrontRightEncoder() {
         return frontRightTalon.getSelectedSensorPosition();
     }
 
-    public static void displayEncoderValues() {
+    public void displayEncoderValues() {
         System.out.println("Back Left Encoder Value: " + getBackLeftEncoder());
         System.out.println("Front Left Encoder Value: " + getFrontLeftEncoder());
         System.out.println("Back Right Encoder Value: " + getBackRightEncoder());

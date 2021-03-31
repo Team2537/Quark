@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     driveSys.periodic();
     CommandScheduler.getInstance().run();
-    DriveSubsystem.displayEncoderValues();
+    driveSys.displayEncoderValues();
   }
 
   /**
