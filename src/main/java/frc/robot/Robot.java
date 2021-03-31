@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.driveSys.DriveSubsystem;
 
 /**
@@ -19,8 +20,9 @@ import frc.robot.driveSys.DriveSubsystem;
  */
 public class Robot extends TimedRobot {
   
-  DriveSubsystem driveSys;
-  XboxController xbox;
+  public static DriveSubsystem driveSys;
+  
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -29,7 +31,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     driveSys = new DriveSubsystem();
-    xbox = new XboxController(0);
+    
   }
 
   /**
@@ -41,9 +43,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    DriveSubsystem.setLeftTalons(xbox.getY(Hand.kLeft));
-    DriveSubsystem.setRightTalons(xbox.getY(Hand.kRight));
-
+    driveSys.periodic();
+    CommandScheduler.getInstance().run();
     DriveSubsystem.displayEncoderValues();
   }
 

@@ -29,17 +29,17 @@ public class DriveSubsystem extends SubsystemBase {
 
     }
 
-    public static void setLeftTalons(double speed) {
+    public void setLeftTalons(double speed) {
         backLeftTalon.set(controlMode, speed);
         frontLeftTalon.set(controlMode, speed);
     }
 
-    public static void setRightTalons(double speed) {
+    public void setRightTalons(double speed) {
         backRightTalon.set(controlMode, speed);
         frontRightTalon.set(controlMode, speed);
     }
 
-    public static void setTalons(double speed) {
+    public void setTalons(double speed) {
         setLeftTalons(speed);
         setRightTalons(speed);
     }
@@ -69,5 +69,10 @@ public class DriveSubsystem extends SubsystemBase {
     
     //get encoder distances
 
+
+    @Override
+    public void periodic() {
+        setDefaultCommand(new DriveCommand());
+    }
 
 }
