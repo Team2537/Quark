@@ -2,7 +2,7 @@ package frc.robot.driveSys;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.humanInput.HumanInput;
+
 
 public class DriveCommand extends CommandBase {
     
@@ -17,8 +17,8 @@ public class DriveCommand extends CommandBase {
 
     @Override
     public void execute() {
-        Robot.driveSys.setLeftTalons(HumanInput.getLeftXBox());
-        Robot.driveSys.setRightTalons(HumanInput.getRightXBox());
+        Robot.driveSys.setLeftTalons(Robot.humanInput.getLeftXBox());
+        Robot.driveSys.setRightTalons(Robot.humanInput.getRightXBox());
     }
 
     @Override

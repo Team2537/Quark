@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.driveSys.DriveSubsystem;
+import frc.robot.humanInput.HumanInput;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,6 +22,7 @@ import frc.robot.driveSys.DriveSubsystem;
 public class Robot extends TimedRobot {
   
   public static DriveSubsystem driveSys;
+  public static HumanInput humanInput;
   
   
 
@@ -31,6 +33,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     driveSys = new DriveSubsystem();
+    humanInput = new HumanInput();
     
   }
 
