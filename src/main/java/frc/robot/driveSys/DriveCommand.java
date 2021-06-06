@@ -23,7 +23,7 @@ public class DriveCommand extends CommandBase {
 
     @Override
     public void end(final boolean interrupted) {
-        Robot.driveSys.setTalons(0);
+        Robot.driveSys.stopMotors();
     }
 
     @Override
