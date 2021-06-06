@@ -3,21 +3,25 @@ package frc.robot.driveSys;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
 
 public class DriveSubsystem extends SubsystemBase {
     
-    private static TalonSRX backLeftTalon, frontLeftTalon, backRightTalon, frontRightTalon;
+    private static WPI_TalonSRX backLeftTalon, frontLeftTalon, backRightTalon, frontRightTalon;
     private static ControlMode controlMode;
     private static FeedbackDevice feedbackDevice;
+    private static MecanumDrive driveMecanum;
 
     public DriveSubsystem() {
 
-        backLeftTalon = new TalonSRX(0);
-        frontLeftTalon = new TalonSRX(1);
-        backRightTalon = new TalonSRX(2);
-        frontRightTalon = new TalonSRX(3);
+        backLeftTalon = new WPI_TalonSRX(0);
+        frontLeftTalon = new WPI_TalonSRX(1);
+        backRightTalon = new WPI_TalonSRX(2);
+        frontRightTalon = new WPI_TalonSRX(3);
 
         controlMode = ControlMode.PercentOutput;
         feedbackDevice = FeedbackDevice.QuadEncoder;
@@ -27,21 +31,33 @@ public class DriveSubsystem extends SubsystemBase {
         backRightTalon.configSelectedFeedbackSensor(feedbackDevice, 0, 0);
         frontRightTalon.configSelectedFeedbackSensor(feedbackDevice, 0, 0);
 
+        driveMecanum = new MecanumDrive(frontLeftTalon, backLeftTalon, frontRightTalon, backRightTalon);
     }
 
-    public void setLeftTalons(double speed) {
-        backLeftTalon.set(controlMode, speed);
-        frontLeftTalon.set(controlMode, speed);
+    public void setMecanumDriveSpeed(double verticalSpeed, double horizontalSpeed, double zRotation) {
+        driveMecanum.driveCartesian(verticalSpeed, horizontalSpeed, zRotation);
     }
 
-    public void setRightTalons(double speed) {
-        backRightTalon.set(controlMode, speed);
-        frontRightTalon.set(controlMode, speed);
+    public void setPolarDriveSpeed(double magnitude, double angle, double zRotation) {
+        driveMecanum.drivePolar(magnitude, angle, zRotation);
     }
 
-    public void setTalons(double speed) {
-        setLeftTalons(speed);
-        setRightTalons(speed);
+    public void setMecanumDriveSpeed() {
+        setMecanumDriveSpeed(0, 0, 0);
+    }
+
+    public void stopMotors() {
+        backLeftTalon.set(controlMode, 0);
+        frontLeftTalon.set(controlMode, 0);
+        backRightTalon.set(controlMode, 0);
+        frontRightTalon.set(controlMode, 0);
+    }
+
+    public void resetEncoders() {
+        frontLeftTalon.setSelectedSensorPosition(0);
+        backLeftTalon.setSelectedSensorPosition(0);
+        frontRightTalon.setSelectedSensorPosition(0);
+        backRightTalon.setSelectedSensorPosition(0);
     }
 
     public double getBackLeftEncoder() {

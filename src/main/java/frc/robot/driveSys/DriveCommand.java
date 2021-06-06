@@ -17,8 +17,8 @@ public class DriveCommand extends CommandBase {
 
     @Override
     public void execute() {
-        Robot.driveSys.setLeftTalons(Robot.humanInput.getLeftXBox());
-        Robot.driveSys.setRightTalons(Robot.humanInput.getRightXBox());
+        Robot.driveSys.setMecanumDriveSpeed();
+        Robot.driveSys.displayEncoderValues();
     }
 
     @Override
